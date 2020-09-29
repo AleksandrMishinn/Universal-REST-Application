@@ -1,8 +1,16 @@
+# Custom ignored files
+/.idea/
+Universal REST Application.iml
+
 # Default ignored files
 /shelf/
-/workspace.xml
+#/.idea/workspace.xml
+
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
 # Editor-based HTTP Client requests
 /httpRequests/
+
+
