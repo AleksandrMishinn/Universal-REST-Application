@@ -3,15 +3,21 @@ package com.andersenlab.server;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServlet;
 import java.io.File;
 
-
+@Component
 public class EmbeddedTomcat {
 
-    public static void main(String[] args) throws LifecycleException {
-        Tomcat tomcat = new Tomcat();
+    private Tomcat tomcat = new Tomcat();
+
+    @PostConstruct
+    public void startTomcat() throws LifecycleException {
+
         tomcat.setBaseDir("temp");
         tomcat.setPort(8080);
 
@@ -30,4 +36,10 @@ public class EmbeddedTomcat {
         tomcat.start();
         tomcat.getServer().await();
     }
+
+    @PreDestroy
+    public void stopTomcat() throws LifecycleException {
+        tomcat.stop();
+    }
+
 }
